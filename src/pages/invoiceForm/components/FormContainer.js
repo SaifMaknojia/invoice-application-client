@@ -109,6 +109,7 @@ const FormContainer = () => {
           <Controller
             name="paymentTerms"
             className="blue-dark my-1"
+            defaultValue="Select Payment terms"
             control={control}
             render={({ field }) => (
               <Form.Select
@@ -117,6 +118,7 @@ const FormContainer = () => {
                 })}
                 className={errors.paymentTerms ? "border-red" : ""}
               >
+                <option value="">Select Payment terms</option>
                 <option value="1">Next Day</option>
                 <option value="7">Next 7 Days</option>
                 <option value="14">Next 14 Days</option>

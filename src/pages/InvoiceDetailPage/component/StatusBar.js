@@ -58,13 +58,18 @@ const StatusBar = () => {
     currentInvoice.status = "paid";
     axios
       .patch(`/${params.id}`, {
-        ...singleInvoice
+        ...currentInvoice
       })
-      .then((res) => {
-        console.log(res.data);
+      .then((data) => {
         setAllInvoices(
-          allInvoices.map((invoice) => {
-            return invoice._id === params.id ? res.data : invoice;
+          allInvoicesCopy.map((invoice) => {
+            if (invoice._id === params.id) {
+              return {
+                ...invoice,
+                currentInvoice
+              };
+            }
+            return invoice;
           })
         );
       })
@@ -100,8 +105,11 @@ const StatusBar = () => {
         </Button>
         <Button
           onClick={handleMarkAsPaid}
-          disabled
-          className="mx-1 button-paid rounded-pill px-4 py-2"
+          className={
+            singleInvoice.status === "paid"
+              ? "mx-1 button-paid rounded-pill px-4 py-2 disabled cursor-disabled"
+              : "mx-1 button-paid rounded-pill px-4 py-2 "
+          }
         >
           Mark as Paid
         </Button>

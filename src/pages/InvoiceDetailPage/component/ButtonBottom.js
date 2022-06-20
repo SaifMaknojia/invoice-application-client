@@ -90,7 +90,11 @@ const ButtonBottom = () => {
         </Button>
         <Button
           onClick={() => handleMarkAsPaid(singleInvoice)}
-          className="mx-1 button-paid  rounded-pill px-4 py-2"
+          className={
+            singleInvoice.status === "paid"
+              ? "mx-1 button-paid rounded-pill px-4 py-2 disabled cursor-disabled"
+              : "mx-1 button-paid rounded-pill px-4 py-2 "
+          }
         >
           Mark as Paid
         </Button>

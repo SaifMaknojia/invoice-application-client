@@ -8,13 +8,14 @@ import axios from "axios";
 import { INVOICE_CONTEXT } from "./contextApi/InvoiceContext";
 
 function App() {
-  const { setAllInvoices, singleInvoice } = useContext(INVOICE_CONTEXT);
+  const { setAllInvoices, singleInvoice, allInvoices } =
+    useContext(INVOICE_CONTEXT);
   useEffect(() => {
     axios
       .get("/")
       .then((data) => setAllInvoices(data.data.invoices))
       .catch((err) => console.log(err));
-  }, [setAllInvoices, singleInvoice]);
+  }, [allInvoices, singleInvoice, setAllInvoices]);
 
   return (
     <>
